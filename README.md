@@ -1,6 +1,6 @@
 # MoI-Bench
 
-### A Benchmark for Image Models on Mobile Devices
+### A Benchmark for Image Generation and Editing on Mobile Devices
 
 [Project page](https://carlofkl.github.io/MoI-Bench-project/) · [Paper](https://carlofkl.github.io/MoI-Bench-project/assets/paper/MoI-Bench.pdf)
 
