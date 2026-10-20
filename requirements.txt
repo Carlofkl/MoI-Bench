@@ -1,0 +1,2 @@
+# Image download/reconstruction and optional image validation.
+Pillow>=10.0

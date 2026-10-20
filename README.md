@@ -22,21 +22,25 @@ Targets include concrete and abstract objects, animals, body and limbs, face and
 
 ## Release checklist
 
-This repository currently provides the project introduction and release plan. The runnable package is being prepared; unchecked items are **not yet available here**.
+This package includes the benchmark metadata and tools for downloading, browsing, evaluating and aggregating results.
 
 - [x] Project website and qualitative examples
 - [x] Paper available through the project website
-- [ ] Benchmark metadata, instructions and task taxonomy
-- [ ] Data download and validation scripts, with image-source attribution
-- [ ] Reviewed evaluation rubrics and sample-level questions
-- [ ] Model inference adapters and output-format documentation
-- [ ] MoI-Eval judging and score-aggregation scripts
-- [ ] Capability-profile plotting tools
-- [ ] Mobile deployment configurations and measurement instructions
+- [x] Final sample-level target mapping ([format](docs/DATA_FORMAT.md))
+- [x] Benchmark metadata, instructions and task taxonomy
+- [x] Data download and validation scripts, with image-source attribution
+- [x] Reviewed evaluation rubrics and sample-level questions
+- [x] Model-output format documentation ([examples](docs/OUTPUT_FORMAT.md))
+- [x] MoI-Eval output judging ([usage](docs/EVALUATION.md))
+- [x] Unified score-aggregation script ([usage](docs/AGGREGATION.md))
+- [x] Unified operation, target, criteria and operation–target score exports
+- [x] Read-only dataset browser
+
+The current package focuses on data access and evaluation. Inference adapters are deferred; plotting and annotation/review tools are excluded.
 
 ## Using the benchmark
 
-> **Release preview:** the steps below describe the existing development workflow. Scripts, metadata, reviewed questions and dependency instructions have not yet been published in this repository. The commands become usable when those checklist items are released. Legacy `moge` filenames are retained in these examples to match the current implementation.
+> **Current status:** data download, validation, browsing, output evaluation and aggregation commands are available. See the [release plan](docs/RELEASE_PLAN.md).
 
 ### 1. Get the repository and download the data
 
@@ -45,46 +49,46 @@ git clone https://github.com/Carlofkl/MoI-Bench.git
 cd MoI-Bench
 ```
 
-Once the download package is released, install its image-processing dependency and provide your own Pexels API key. The downloader reconstructs benchmark inputs from the recorded source metadata.
+Use Python 3.10 or newer. Install the image-processing dependency and provide your own Pexels API key. The downloader reconstructs benchmark inputs from the recorded source metadata.
 
 ```bash
-python -m pip install Pillow
+python -m pip install -r requirements.txt
 export PEXELS_API_KEY="YOUR_PEXELS_API_KEY"
 
+# Validate metadata without downloading images.
+python scripts/validate_dataset.py
+
 # Inspect planned downloads first.
-python scripts/download_moge_images.py --dry-run
+python scripts/download_images.py --dry-run
 
 # Download and reconstruct the benchmark inputs.
-python scripts/download_moge_images.py
+python scripts/download_images.py
 
 # Validate metadata, image paths and dimensions.
-python scripts/validate_moge.py --verify-images
+python scripts/validate_dataset.py --verify-images
 ```
 
 Use the released image-source and license records for attribution. Keep API keys outside version control.
 
-### 2. Generate model outputs
-
-Install the selected model's dependencies and obtain its checkpoint according to the inference instructions that will accompany the release. GPU memory requirements depend on the model.
-
-For example, the development package provides separate DreamLite generation and editing runners:
+### Browse the dataset
 
 ```bash
-python scripts/run_dreamlite_gen.py --dry-run --limit 3
-python scripts/run_dreamlite_edit.py --dry-run --limit 3
-
-python scripts/run_dreamlite_gen.py
-python scripts/run_dreamlite_edit.py
+python scripts/browse_moi.py
+# Optional Chinese interface:
+python scripts/browse_moi.py --language zh
 ```
 
-These commands illustrate the workflow, not a claim that the runner defaults reproduce every configuration reported in the paper. Use the released experiment configurations for reproduction.
+The read-only browser supports operation/target filters and prompt or sample-ID search. It uses the final labels in `targets.json`. Download images first to view them; instructions remain browsable without images. No review or annotation controls are included.
+
+### 2. Prepare model outputs
+
+Run your model using its own inference implementation. Model inference scripts are outside the current release scope. Follow the [output-format examples](docs/OUTPUT_FORMAT.md) to arrange existing outputs and declare unsupported tasks.
 
 Outputs follow this layout:
 
 ```text
-output/<model_tag>/<full_task>/<sample_id>/
+output/<model_tag>/<full_task>/<sample_directory>/
 ├── prompt.json
-├── output_sizes.json
 └── seed_0.png
 ```
 
@@ -95,9 +99,10 @@ output/<model_tag>/<full_task>/<sample_id>/
 The evaluator requires the released sample-level questions and credentials for the selected judge. For an OpenAI-compatible evaluation using GPT-4o:
 
 ```bash
+python -m pip install -r requirements-eval.txt
 export OPENAI_API_KEY="YOUR_OPENAI_API_KEY"
 
-python scripts/eval_vlm_judge.py \
+python scripts/eval_outputs.py \
   --model-tag dreamlite \
   --judge openai \
   --judge-model gpt-4o \
@@ -106,6 +111,8 @@ python scripts/eval_vlm_judge.py \
 ```
 
 Judge calls incur provider charges. Keep the judge configuration fixed when comparing models. Questions use the same `0`, `0.6` and `1` scoring anchors; unsupported tasks must remain distinguishable from execution failures and missing outputs.
+
+See [evaluation instructions](docs/EVALUATION.md) for output metadata, dry-run, capability declarations and resuming.
 
 ### 4. Aggregate and inspect results
 
@@ -116,7 +123,22 @@ python scripts/aggregate_scores.py \
   --models dreamlite
 ```
 
-Inspect overall quality, task coverage and the operation-, target- and criterion-level profiles. These show both what a model supports and where its outputs fall short. Quality scores alone do not establish on-device performance: latency, storage and peak memory require separate measurements on the target device.
+The aggregation command exports overall quality, task coverage, operation, target and criteria profiles, and operation–target scores in one run, without additional judge calls. These exports require sample-level scores and the released task/target metadata; overall scores alone are insufficient. The default uses the fixed benchmark denominator. Missing or invalid results retain their status and mark summaries as incomplete. See the [aggregation guide](docs/AGGREGATION.md) for denominator options and explicit failure declarations. Quality scores alone do not establish on-device performance: latency, storage and peak memory require separate measurements on the target device.
+
+## Repository layout
+
+```text
+data/                   # Samples, questions, rubrics and target labels
+  images/               # Image source records and reconstruction settings
+scripts/                # Five runnable commands
+  moi/                  # Shared dataset-reading and scoring modules
+docs/                   # Data/output formats and usage guides
+tests/                  # Offline checks
+```
+
+## License
+
+Original project code, documentation and benchmark annotations are released under the [MIT License](LICENSE). Third-party images are not included or relicensed; use the download script and reconstruction settings under their original terms. See [image licensing](IMAGE_LICENSE.md).
 
 ## Citation
 

@@ -1,0 +1,45 @@
+# Python and test caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Local environments and credentials
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+
+# Local smoke tests and generated results
+.smoke-test/
+output/
+results/
+*.log
+*.part
+*.tmp
+
+# Packaging artifacts
+build/
+dist/
+*.egg-info/
+
+# macOS/editor files
+.DS_Store
+._*
+*.swp
+*.swo
+
+# Download cache and image binaries; keep source metadata tracked
+data/.download_cache/
+data/images/**/*.jpg
+data/images/**/*.jpeg
+data/images/**/*.png
+data/images/**/*.webp
+data/images/**/*.gif
+data/images/**/*.tif
+data/images/**/*.tiff

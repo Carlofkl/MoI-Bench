@@ -1,0 +1,587 @@
+{
+  "schema_version": "moi-taxonomy-v1",
+  "benchmark": "MoI-Bench",
+  "n_samples": 1150,
+  "n_generation_samples": 150,
+  "n_editing_samples": 1000,
+  "n_subtasks": 64,
+  "note": "Original task definitions. Task target scopes such as all or mixed differ from the final per-sample labels in targets.json.",
+  "subtasks": {
+    "gen/object/abstract": {
+      "operation_family": "gen",
+      "operation": "gen",
+      "task_target_group": "object",
+      "task_target_subcategory": "abstract",
+      "n_samples": 20,
+      "task_definition": "壁纸/光影渐变类，手机竖屏比例",
+      "task_example": "生成一张青色渐变的极简手机竖屏壁纸"
+    },
+    "gen/object/concrete": {
+      "operation_family": "gen",
+      "operation": "gen",
+      "task_target_group": "object",
+      "task_target_subcategory": "concrete",
+      "n_samples": 20,
+      "task_definition": "通用物件生成，不依赖参考图",
+      "task_example": "生成一张放在木桌上的复古胶片相机"
+    },
+    "gen/animal": {
+      "operation_family": "gen",
+      "operation": "gen",
+      "task_target_group": "animal",
+      "task_target_subcategory": null,
+      "n_samples": 15,
+      "task_definition": "宠物形象生成",
+      "task_example": "生成一只趴在窗台晒太阳的橘猫，清新风"
+    },
+    "gen/text": {
+      "operation_family": "gen",
+      "operation": "gen",
+      "task_target_group": "text",
+      "task_target_subcategory": null,
+      "n_samples": 30,
+      "task_definition": "含文字的海报/表情包，考中文文字渲染",
+      "task_example": "生成一张奶茶新品海报，标题「第二杯半价」"
+    },
+    "gen/portrait/body": {
+      "operation_family": "gen",
+      "operation": "gen",
+      "task_target_group": "portrait",
+      "task_target_subcategory": "body",
+      "n_samples": 20,
+      "task_definition": "全身写真，考人体比例与审美",
+      "task_example": "生成一张职业女性的全身商务写真"
+    },
+    "gen/portrait/face": {
+      "operation_family": "gen",
+      "operation": "gen",
+      "task_target_group": "portrait",
+      "task_target_subcategory": "face",
+      "n_samples": 20,
+      "task_definition": "头像特写，考五官细节与审美",
+      "task_example": "生成一张浅灰背景的商务女性头像特写"
+    },
+    "gen/portrait/multi": {
+      "operation_family": "gen",
+      "operation": "gen",
+      "task_target_group": "portrait",
+      "task_target_subcategory": "multi",
+      "n_samples": 15,
+      "task_definition": "合影生成，考多主体一致性",
+      "task_example": "生成一张三位好友在咖啡馆的合影"
+    },
+    "gen/portrait/attire": {
+      "operation_family": "gen",
+      "operation": "gen",
+      "task_target_group": "portrait",
+      "task_target_subcategory": "attire",
+      "n_samples": 10,
+      "task_definition": "穿搭生成",
+      "task_example": "生成一位穿米色风衣的男士街拍时尚照"
+    },
+    "local/add/object/abstract": {
+      "operation_family": "local",
+      "operation": "local/add",
+      "task_target_group": "object",
+      "task_target_subcategory": "abstract",
+      "n_samples": 15,
+      "task_definition": "增加光影等",
+      "task_example": "在物体右侧加一束暖色侧光"
+    },
+    "local/add/object/concrete": {
+      "operation_family": "local",
+      "operation": "local/add",
+      "task_target_group": "object",
+      "task_target_subcategory": "concrete",
+      "n_samples": 20,
+      "task_definition": "增加某物",
+      "task_example": "在桌上添加一个咖啡杯"
+    },
+    "local/add/animal": {
+      "operation_family": "local",
+      "operation": "local/add",
+      "task_target_group": "animal",
+      "task_target_subcategory": null,
+      "n_samples": 15,
+      "task_definition": "添加动物/宠物",
+      "task_example": "在草地上添加一只柯基犬"
+    },
+    "local/add/portrait/face": {
+      "operation_family": "local",
+      "operation": "local/add",
+      "task_target_group": "portrait",
+      "task_target_subcategory": "face",
+      "n_samples": 30,
+      "task_definition": "添加妆容",
+      "task_example": "给她化一个淡雅的日常妆"
+    },
+    "local/add/portrait/multi": {
+      "operation_family": "local",
+      "operation": "local/add",
+      "task_target_group": "portrait",
+      "task_target_subcategory": "multi",
+      "n_samples": 15,
+      "task_definition": "考虑位置关系的添加某物",
+      "task_example": "给左边第二个人戴一顶帽子"
+    },
+    "local/add/portrait/attire": {
+      "operation_family": "local",
+      "operation": "local/add",
+      "task_target_group": "portrait",
+      "task_target_subcategory": "attire",
+      "n_samples": 25,
+      "task_definition": "添加眼镜/口罩/耳环等、添加衣物等",
+      "task_example": "给他戴上一副黑框眼镜"
+    },
+    "local/add/text": {
+      "operation_family": "local",
+      "operation": "local/add",
+      "task_target_group": "text",
+      "task_target_subcategory": null,
+      "n_samples": 20,
+      "task_definition": "添加文字",
+      "task_example": "在左上角添加文字「夏日特惠」"
+    },
+    "local/remove/object/abstract": {
+      "operation_family": "local",
+      "operation": "local/remove",
+      "task_target_group": "object",
+      "task_target_subcategory": "abstract",
+      "n_samples": 15,
+      "task_definition": "去反光/阴影",
+      "task_example": "去除玻璃上的反光"
+    },
+    "local/remove/object/concrete": {
+      "operation_family": "local",
+      "operation": "local/remove",
+      "task_target_group": "object",
+      "task_target_subcategory": "concrete",
+      "n_samples": 25,
+      "task_definition": "去除某物",
+      "task_example": "去除背景里的垃圾桶"
+    },
+    "local/remove/animal": {
+      "operation_family": "local",
+      "operation": "local/remove",
+      "task_target_group": "animal",
+      "task_target_subcategory": null,
+      "n_samples": 10,
+      "task_definition": "去除动物/宠物",
+      "task_example": "去除画面里乱入的流浪猫"
+    },
+    "local/remove/portrait/face": {
+      "operation_family": "local",
+      "operation": "local/remove",
+      "task_target_group": "portrait",
+      "task_target_subcategory": "face",
+      "n_samples": 30,
+      "task_definition": "卸妆/去痘/去皱",
+      "task_example": "去除脸上的痘痘和额头细纹"
+    },
+    "local/remove/portrait/multi": {
+      "operation_family": "local",
+      "operation": "local/remove",
+      "task_target_group": "portrait",
+      "task_target_subcategory": "multi",
+      "n_samples": 25,
+      "task_definition": "合影中去除一人",
+      "task_example": "去掉合影最左边的路人，背景补全"
+    },
+    "local/remove/portrait/attire": {
+      "operation_family": "local",
+      "operation": "local/remove",
+      "task_target_group": "portrait",
+      "task_target_subcategory": "attire",
+      "n_samples": 20,
+      "task_definition": "去除饰品",
+      "task_example": "去掉她佩戴的项链"
+    },
+    "local/remove/text": {
+      "operation_family": "local",
+      "operation": "local/remove",
+      "task_target_group": "text",
+      "task_target_subcategory": null,
+      "n_samples": 20,
+      "task_definition": "去除文字",
+      "task_example": "去除图片右下角的日期"
+    },
+    "local/replace/object/concrete": {
+      "operation_family": "local",
+      "operation": "local/replace",
+      "task_target_group": "object",
+      "task_target_subcategory": "concrete",
+      "n_samples": 20,
+      "task_definition": "替换某物",
+      "task_example": "把桌上的苹果换成橙子"
+    },
+    "local/replace/animal": {
+      "operation_family": "local",
+      "operation": "local/replace",
+      "task_target_group": "animal",
+      "task_target_subcategory": null,
+      "n_samples": 10,
+      "task_definition": "替换宠物/品种",
+      "task_example": "把这只金毛换成哈士奇"
+    },
+    "local/replace/portrait/face": {
+      "operation_family": "local",
+      "operation": "local/replace",
+      "task_target_group": "portrait",
+      "task_target_subcategory": "face",
+      "n_samples": 30,
+      "task_definition": "修改发型、换脸",
+      "task_example": "把她的直发换成中长卷发"
+    },
+    "local/replace/portrait/multi": {
+      "operation_family": "local",
+      "operation": "local/replace",
+      "task_target_group": "portrait",
+      "task_target_subcategory": "multi",
+      "n_samples": 15,
+      "task_definition": "合影中交换两个人（不串脸）",
+      "task_example": "把合影左边和右边的人交换位置"
+    },
+    "local/replace/portrait/attire": {
+      "operation_family": "local",
+      "operation": "local/replace",
+      "task_target_group": "portrait",
+      "task_target_subcategory": "attire",
+      "n_samples": 25,
+      "task_definition": "改变衣物",
+      "task_example": "把他的 T 恤换成西装外套"
+    },
+    "local/replace/text": {
+      "operation_family": "local",
+      "operation": "local/replace",
+      "task_target_group": "text",
+      "task_target_subcategory": null,
+      "n_samples": 20,
+      "task_definition": "表格文字修改、图片文字修改",
+      "task_example": "把招牌上的「Hamburger」改成「Pizza」"
+    },
+    "local/adjust/object/abstract": {
+      "operation_family": "local",
+      "operation": "local/adjust",
+      "task_target_group": "object",
+      "task_target_subcategory": "abstract",
+      "n_samples": 15,
+      "task_definition": "位置修改、调整局部光影",
+      "task_example": "把画面里的月亮向左移动一些"
+    },
+    "local/adjust/object/concrete": {
+      "operation_family": "local",
+      "operation": "local/adjust",
+      "task_target_group": "object",
+      "task_target_subcategory": "concrete",
+      "n_samples": 20,
+      "task_definition": "颜色修改、材料修改、尺寸修改、单个物体朝向修改",
+      "task_example": "把这辆车的颜色改成红色"
+    },
+    "local/adjust/animal": {
+      "operation_family": "local",
+      "operation": "local/adjust",
+      "task_target_group": "animal",
+      "task_target_subcategory": null,
+      "n_samples": 10,
+      "task_definition": "改毛色 / 姿态",
+      "task_example": "把这只猫的毛色改成橘色"
+    },
+    "local/adjust/portrait/body": {
+      "operation_family": "local",
+      "operation": "local/adjust",
+      "task_target_group": "portrait",
+      "task_target_subcategory": "body",
+      "n_samples": 30,
+      "task_definition": "动作变换、体态修改（长腿/瘦腰）、肌肉线条",
+      "task_example": "把她的腿修得更修长一些；把侧脸转成正脸"
+    },
+    "local/adjust/portrait/face": {
+      "operation_family": "local",
+      "operation": "local/adjust",
+      "task_target_group": "portrait",
+      "task_target_subcategory": "face",
+      "n_samples": 30,
+      "task_definition": "五官尺寸/位置、几何形变的表情/瘦脸、人脸修图",
+      "task_example": "把脸瘦一点、眼睛稍微放大"
+    },
+    "local/adjust/portrait/multi": {
+      "operation_family": "local",
+      "operation": "local/adjust",
+      "task_target_group": "portrait",
+      "task_target_subcategory": "multi",
+      "n_samples": 15,
+      "task_definition": "调整合照的多人姿势、表情等",
+      "task_example": "让合影里每个人都自然微笑"
+    },
+    "local/adjust/portrait/attire": {
+      "operation_family": "local",
+      "operation": "local/adjust",
+      "task_target_group": "portrait",
+      "task_target_subcategory": "attire",
+      "n_samples": 20,
+      "task_definition": "修改衣服颜色、修改饰品属性",
+      "task_example": "把她的裙子颜色改成雾霾蓝"
+    },
+    "local/adjust/text": {
+      "operation_family": "local",
+      "operation": "local/adjust",
+      "task_target_group": "text",
+      "task_target_subcategory": null,
+      "n_samples": 15,
+      "task_definition": "字体修改、字号修改、排版修改",
+      "task_example": "把标题换成更粗的黑体并居中"
+    },
+    "global/stylize/all": {
+      "operation_family": "global",
+      "operation": "global/stylize",
+      "task_target_group": "all",
+      "task_target_subcategory": null,
+      "n_samples": 30,
+      "task_definition": "统一风格化",
+      "task_example": "把整张照片转成吉卜力动画风格"
+    },
+    "global/background/all": {
+      "operation_family": "global",
+      "operation": "global/background",
+      "task_target_group": "all",
+      "task_target_subcategory": null,
+      "n_samples": 35,
+      "task_definition": "天空/环境/建筑（图像中大面积）替换、背景虚化、重打光",
+      "task_example": "把背景换成海边日落"
+    },
+    "global/restore/object": {
+      "operation_family": "global",
+      "operation": "global/restore",
+      "task_target_group": "object",
+      "task_target_subcategory": null,
+      "n_samples": 30,
+      "task_definition": "去噪/去模糊/去摩尔纹/上色/超分/去水印",
+      "task_example": "去除噪点并提升整体清晰度"
+    },
+    "global/restore/portrait": {
+      "operation_family": "global",
+      "operation": "global/restore",
+      "task_target_group": "portrait",
+      "task_target_subcategory": null,
+      "n_samples": 25,
+      "task_definition": "人像去阴影/去模糊/去过曝",
+      "task_example": "修复逆光人像，去脸部阴影"
+    },
+    "global/restore/text": {
+      "operation_family": "global",
+      "operation": "global/restore",
+      "task_target_group": "text",
+      "task_target_subcategory": null,
+      "n_samples": 15,
+      "task_definition": "文档去阴影/去模糊/去过曝",
+      "task_example": "去除文档照片的阴影并去过曝"
+    },
+    "global/camera/all": {
+      "operation_family": "global",
+      "operation": "global/camera",
+      "task_target_group": "all",
+      "task_target_subcategory": null,
+      "n_samples": 30,
+      "task_definition": "统一相机角度变换、修改拍摄视角",
+      "task_example": "把平视照片改成俯拍视角"
+    },
+    "global/camera/text": {
+      "operation_family": "global",
+      "operation": "global/camera",
+      "task_target_group": "text",
+      "task_target_subcategory": null,
+      "n_samples": 15,
+      "task_definition": "文档矫正",
+      "task_example": "把倾斜拍摄的文档拉成正视矩形"
+    },
+    "understand/comprehend/object": {
+      "operation_family": "understand",
+      "operation": "understand/comprehend",
+      "task_target_group": "object",
+      "task_target_subcategory": null,
+      "n_samples": 30,
+      "task_definition": "常识/因果编辑",
+      "task_example": "让桌上的冰淇淋在阳光下开始融化"
+    },
+    "understand/comprehend/portrait": {
+      "operation_family": "understand",
+      "operation": "understand/comprehend",
+      "task_target_group": "portrait",
+      "task_target_subcategory": null,
+      "n_samples": 20,
+      "task_definition": "需要理解语义的表情编辑",
+      "task_example": "让他看起来很惊讶"
+    },
+    "understand/comprehend/text": {
+      "operation_family": "understand",
+      "operation": "understand/comprehend",
+      "task_target_group": "text",
+      "task_target_subcategory": null,
+      "n_samples": 20,
+      "task_definition": "文字翻译、文档翻译",
+      "task_example": "把这页菜单的中文全部译成英文并保持排版"
+    },
+    "understand/outpaint/all": {
+      "operation_family": "understand",
+      "operation": "understand/outpaint",
+      "task_target_group": "all",
+      "task_target_subcategory": null,
+      "n_samples": 25,
+      "task_definition": "统一扩图",
+      "task_example": "把这张竖图向左右扩展成横构图"
+    },
+    "understand/inpaint/all": {
+      "operation_family": "understand",
+      "operation": "understand/inpaint",
+      "task_target_group": "all",
+      "task_target_subcategory": null,
+      "n_samples": 25,
+      "task_definition": "统一填充（对有 mask 的图像做复原），需模型推理被遮盖部分，不是普通删除/增加，需输入 mask 图",
+      "task_example": "推理并补全被遮挡区域的内容"
+    },
+    "ref/r1/object/concrete": {
+      "operation_family": "ref",
+      "operation": "ref/r1",
+      "task_target_group": "object",
+      "task_target_subcategory": "concrete",
+      "n_samples": 8,
+      "task_definition": "保留单张参考图中的具体物体，在指令描述的新场景中重新生成",
+      "task_example": "参考这把椅子的外观，生成它放在极简书房中的图片"
+    },
+    "ref/r1/animal": {
+      "operation_family": "ref",
+      "operation": "ref/r1",
+      "task_target_group": "animal",
+      "task_target_subcategory": null,
+      "n_samples": 5,
+      "task_definition": "保留单张参考图中的宠物身份和外观，在新场景中重新生成",
+      "task_example": "用这只狗作为主角，生成它在海边奔跑的照片"
+    },
+    "ref/r1/portrait/face": {
+      "operation_family": "ref",
+      "operation": "ref/r1",
+      "task_target_group": "portrait",
+      "task_target_subcategory": "face",
+      "n_samples": 10,
+      "task_definition": "保留单张人像参考图中的人物身份，生成证件照或新人像",
+      "task_example": "参考此人照片生成白底证件照"
+    },
+    "ref/r1/portrait/multi": {
+      "operation_family": "ref",
+      "operation": "ref/r1",
+      "task_target_group": "portrait",
+      "task_target_subcategory": "multi",
+      "n_samples": 4,
+      "task_definition": "保留单张参考图中多个人物的身份或群体关系，生成新合影",
+      "task_example": "参考这组人物，生成他们在公园里的自然合影"
+    },
+    "ref/r1/portrait/attire": {
+      "operation_family": "ref",
+      "operation": "ref/r1",
+      "task_target_group": "portrait",
+      "task_target_subcategory": "attire",
+      "n_samples": 5,
+      "task_definition": "从单张人像参考图中提取指定的衣物或饰品，生成独立完整的产品展示图",
+      "task_example": "提取人物佩戴的项链，生成白底正面产品图"
+    },
+    "ref/r1/text": {
+      "operation_family": "ref",
+      "operation": "ref/r1",
+      "task_target_group": "text",
+      "task_target_subcategory": null,
+      "n_samples": 6,
+      "task_definition": "参考单张文字或文档图的字体、版式和视觉语言，生成新文档",
+      "task_example": "参考这张海报的字体和版式，生成一张英文咖啡节海报"
+    },
+    "ref/b1r1/object/abstract": {
+      "operation_family": "ref",
+      "operation": "ref/b1r1",
+      "task_target_group": "object",
+      "task_target_subcategory": "abstract",
+      "n_samples": 8,
+      "task_definition": "把参考图的风格或抽象视觉特征迁移到底图",
+      "task_example": "参照这张画的风格重绘底图照片"
+    },
+    "ref/b1r1/object/concrete": {
+      "operation_family": "ref",
+      "operation": "ref/b1r1",
+      "task_target_group": "object",
+      "task_target_subcategory": "concrete",
+      "n_samples": 14,
+      "task_definition": "把参考图中的具体物体放入或替换到底图",
+      "task_example": "把参考图里的沙发放进这个客厅"
+    },
+    "ref/b1r1/animal": {
+      "operation_family": "ref",
+      "operation": "ref/b1r1",
+      "task_target_group": "animal",
+      "task_target_subcategory": null,
+      "n_samples": 7,
+      "task_definition": "把参考图中的宠物放入底图，或把参考配饰迁移到底图宠物身上",
+      "task_example": "把参考图里的狗放到草地场景中"
+    },
+    "ref/b1r1/portrait/body": {
+      "operation_family": "ref",
+      "operation": "ref/b1r1",
+      "task_target_group": "portrait",
+      "task_target_subcategory": "body",
+      "n_samples": 8,
+      "task_definition": "让底图人物采用参考图姿态，保持底图人物身份",
+      "task_example": "让底图人物摆出参考图里的姿势"
+    },
+    "ref/b1r1/portrait/face": {
+      "operation_family": "ref",
+      "operation": "ref/b1r1",
+      "task_target_group": "portrait",
+      "task_target_subcategory": "face",
+      "n_samples": 14,
+      "task_definition": "把参考图的面部身份、妆容、美瞳、五官属性或发型迁移到底图人物；换脸时身份来自参考图，姿态、表情、发型、服装、光照和背景来自底图",
+      "task_example": "将参考人物的面部身份换到底图人物上，保留底图的姿态、表情、发型和背景"
+    },
+    "ref/b1r1/portrait/multi": {
+      "operation_family": "ref",
+      "operation": "ref/b1r1",
+      "task_target_group": "portrait",
+      "task_target_subcategory": "multi",
+      "n_samples": 8,
+      "task_definition": "把参考图中的人物加入底图合影，并保持其他人物不变",
+      "task_example": "把参考图中的人自然地放进底图合影最右侧"
+    },
+    "ref/b1r1/portrait/attire": {
+      "operation_family": "ref",
+      "operation": "ref/b1r1",
+      "task_target_group": "portrait",
+      "task_target_subcategory": "attire",
+      "n_samples": 15,
+      "task_definition": "把参考图的衣物、饰品或美甲迁移到底图人物",
+      "task_example": "让底图人物试穿参考图里的连衣裙"
+    },
+    "ref/b1r1/text": {
+      "operation_family": "ref",
+      "operation": "ref/b1r1",
+      "task_target_group": "text",
+      "task_target_subcategory": null,
+      "n_samples": 8,
+      "task_definition": "把参考图的字体或版式迁移到底图中的指定文字",
+      "task_example": "用参考图的字体样式改写底图中的标题"
+    },
+    "ref/b1r2/mixed": {
+      "operation_family": "ref",
+      "operation": "ref/b1r2",
+      "task_target_group": "mixed",
+      "task_target_subcategory": null,
+      "n_samples": 12,
+      "task_definition": "输入一张底图和两张角色明确的参考图，将两种独立参考信息组合到底图，并保持底图非目标内容",
+      "task_example": "让底图人物使用图2的面部身份和图3的发型，保留底图的姿态、服装和背景"
+    },
+    "ref/b1r3/mixed": {
+      "operation_family": "ref",
+      "operation": "ref/b1r3",
+      "task_target_group": "mixed",
+      "task_target_subcategory": null,
+      "n_samples": 8,
+      "task_definition": "输入一张底图和三张角色明确的参考图，将三种参考主体或属性组合到底图，用于测试跨图绑定和冲突消解",
+      "task_example": "把图2的人物、图3的宠物和图4的行李自然加入底图场景，并保持各自外观"
+    }
+  }
+}
