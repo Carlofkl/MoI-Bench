@@ -2,7 +2,7 @@
 
 ### A Benchmark for Image Generation and Editing on Mobile Devices
 
-[Project page](https://carlofkl.github.io/MoI-Bench-project/) · [Paper](https://carlofkl.github.io/MoI-Bench-project/assets/paper/MoI-Bench.pdf)
+[Project page](https://carlofkl.github.io/MoI-Bench-project/)
 
 MoI-Bench evaluates image generation and editing through requests people make on mobile devices. It contains **1,150 samples across 64 subtasks**, organized by **16 operations** and **8 target categories**.
 
@@ -25,7 +25,6 @@ Targets include concrete and abstract objects, animals, body and limbs, face and
 This package includes the benchmark metadata and tools for downloading, browsing, evaluating and aggregating results.
 
 - [x] Project website and qualitative examples
-- [x] Paper available through the project website
 - [x] Final sample-level target mapping ([format](docs/DATA_FORMAT.md))
 - [x] Benchmark metadata, instructions and task taxonomy
 - [x] Data download and validation scripts, with image-source attribution
@@ -143,11 +142,3 @@ Original project code, documentation and benchmark annotations are released unde
 ## Citation
 
 The BibTeX entry will be added when the publication metadata is finalized.
-
-## Authors
-
-Kailai Feng<sup>1,*</sup>, Haoxiang Rao<sup>2,*</sup>, Yuxiang Wei<sup>3,†</sup>, Bo Chen<sup>2</sup>, Junsong Li<sup>2</sup>, Yang Pan<sup>2</sup>, Chengkun Cai<sup>1</sup>, Jagmohan Chauhan<sup>1,†</sup>
-
-<sup>1</sup> University College London · <sup>2</sup> ByteDance · <sup>3</sup> The Hong Kong Polytechnic University
-
-<sup>*</sup> Equal contribution. <sup>†</sup> Co-corresponding authors.
