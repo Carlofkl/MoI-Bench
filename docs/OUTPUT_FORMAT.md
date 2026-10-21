@@ -16,6 +16,13 @@ output/<model_tag>/<task>/<sample_directory>/
 
 `output_sizes.json` is not required by the evaluation package. It may be kept as optional experiment metadata.
 
+## Saved output size
+
+- Text-to-image generation uses the model's default resolution. Wallpaper prompts use a 9:16 aspect ratio.
+- An editing output must have the same pixel dimensions as its base image unless the instruction specifies another canvas size.
+- Outpainting defaults to a 1:1 output canvas. An aspect ratio or pixel size stated in the instruction takes precedence.
+- Saved outputs should not be resized after inference. Evaluation-time image preprocessing does not change the saved output.
+
 ## Text-to-image
 
 Directory: `output/my_model/gen/animal/gen_animal_000/`

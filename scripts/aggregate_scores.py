@@ -15,6 +15,7 @@ from moi.scoring import EVAL_PROTOCOL_VERSION, GROUP_ORDER, aggregate_question_s
 
 ROOT = Path(__file__).resolve().parents[1]
 VALID = {'scored', 'unsupported_capability'}
+RESOLVED = VALID | {'execution_failed'}
 STATUSES = ('scored', 'unsupported_capability', 'execution_failed', 'missing_output',
             'missing_evaluation', 'invalid_result', 'stale_result')
 COUNT_FIELDS = ['n_expected', 'n_included', *['n_' + s for s in STATUSES]]
@@ -67,7 +68,7 @@ def load_result(path, question, sample_id, task, judge_model=None):
 def summarize(rows, value='Q'):
     counts = Counter(r['status'] for r in rows)
     included = [r[value] for r in rows if r['included']]
-    unresolved = any(counts[s] for s in STATUSES if s not in VALID)
+    unresolved = any(counts[s] for s in STATUSES if s not in RESOLVED)
     return {'score': mean(included) if included else None,
             'aggregation_status': ('not_applicable' if not rows else
                                    'no_included_samples' if not included else
@@ -142,8 +143,9 @@ def main():
     parser.add_argument('--judge-tag', required=True)
     parser.add_argument('--judge-model', help='Optional expected judge model; mismatches are stale')
     parser.add_argument('--mode', choices=['all', 'gen', 'edit'], default='all')
-    parser.add_argument('--denominator', choices=['fixed', 'available'], default='fixed',
-                        help='fixed: unresolved samples count zero; available: exclude unresolved samples')
+    parser.add_argument('--denominator', choices=['fixed', 'available'], default='available',
+                        help=('available: scored and unsupported samples only; '
+                              'fixed: every expected sample, including unresolved cases, counts zero'))
     parser.add_argument('--status-file', type=Path, help='Explicit unsupported/failed sample declarations; see docs/AGGREGATION.md')
     args = parser.parse_args()
     try:

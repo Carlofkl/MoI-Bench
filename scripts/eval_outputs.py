@@ -424,7 +424,7 @@ def build_result_record(
         "kind": "gen" if str(item.get("task", "")).startswith("gen/") else "edit",
         "instruction": question_record["instruction"],
         "instruction_zh": question_record.get("instruction_zh"),
-        "active_criterions": question_record.get("active_criterions", []),
+        "active_criteria": question_record.get("active_criteria", []),
         "group_weights": question_record["group_weights"],
         "questions": results,
         "scores": scores,

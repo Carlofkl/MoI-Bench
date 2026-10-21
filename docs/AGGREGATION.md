@@ -33,8 +33,8 @@ A blank score is N/A, not zero. `not_applicable` means that a group contains no 
 
 The policy is explicit and applies to every selected model:
 
-- `--denominator fixed` (default): use all expected samples in scope. Missing, invalid, stale and explicitly failed samples contribute zero. They remain labelled with their actual status, and affected summaries are marked incomplete.
-- `--denominator available`: use only valid scored or explicitly unsupported samples. Other statuses are excluded and the affected summaries remain incomplete. This can inflate apparent performance when difficult outputs are missing; report the included counts and policy with results.
+- `--denominator available` (default): retain valid scored samples and explicitly unsupported tasks, with unsupported tasks scored as zero. Confirmed generation or judge execution failures are excluded. Missing, invalid or stale results are excluded but keep the summary marked incomplete. Report the included counts and policy because exclusions can raise the apparent score.
+- `--denominator fixed`: use all expected samples in scope. Missing, invalid, stale and explicitly failed samples contribute zero.
 
 Unsupported samples contribute zero under both policies. Inapplicable criteria never contribute zero. Coverage is the proportion of original subtask means at least 0.6. If any subtask has no included samples, coverage is blank rather than interpreting an unknown mean as a failure.
 

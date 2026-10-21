@@ -122,7 +122,7 @@ python scripts/aggregate_scores.py \
   --models dreamlite
 ```
 
-The aggregation command exports overall quality, task coverage, operation, target and criteria profiles, and operation–target scores in one run, without additional judge calls. These exports require sample-level scores and the released task/target metadata; overall scores alone are insufficient. The default uses the fixed benchmark denominator. Missing or invalid results retain their status and mark summaries as incomplete. See the [aggregation guide](docs/AGGREGATION.md) for denominator options and explicit failure declarations. Quality scores alone do not establish on-device performance: latency, storage and peak memory require separate measurements on the target device.
+The aggregation command exports overall quality, task coverage, operation, target and criteria profiles, and operation–target scores in one run, without additional judge calls. These exports require sample-level scores and the released task/target metadata; overall scores alone are insufficient. By default, unsupported tasks remain zero and confirmed execution failures are excluded. Missing or invalid results retain their status and mark summaries as incomplete. See the [aggregation guide](docs/AGGREGATION.md) for denominator options and explicit failure declarations. Quality scores alone do not establish on-device performance: latency, storage and peak memory require separate measurements on the target device.
 
 ## Repository layout
 
