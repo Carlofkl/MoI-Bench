@@ -2,7 +2,7 @@
 
 ### A Benchmark for Image Generation and Editing on Mobile Devices
 
-[Project page](https://carlofkl.github.io/MoI-Bench-project/)
+[Paper](https://arxiv.org/pdf/2610.37599v1) · [Project page](https://carlofkl.github.io/MoI-Bench-project/)
 
 MoI-Bench evaluates image generation and editing through requests people make on mobile devices. It contains **1,150 samples across 64 subtasks**, organized by **16 operations** and **8 target categories**.
 
